@@ -35,7 +35,7 @@ $$\frac{dC_{BP}}{dt} = Y_{S/BP}r_2 + r_3$$
 
 Where, $$k_{p1} = \alpha e^{-\beta C_{S0}} $$
 
-Cx = Biomass concentration, Cs = Substrate concentration, Cp = concentartion of product, CBP = Biproduct concentration.
+$C_x$ = Biomass concentration, $C_s$ = Substrate concentration, $C_p$ = concentartion of product, $C_{BP}$ = Biproduct concentration.
 
 The various parameters reported by the paper are as shown in table 1.0
 
@@ -47,7 +47,7 @@ experimental data of succinic acid production employing potato wastes as carbon 
 Moreover, the plot of the model as reported by the paper is as shown in figure 1.0
 
 
-![Alt text](image-1.png)
+![Alt text](<The paper model plot.png>)
 
 *Figure 1.0: Kinetic modeling of succinic acid production employing potato wastes as carbon source.
 Data points: Grey = Observe substrate, Red = observed product, orange = observed byproduct, green = observed biomass*
@@ -58,13 +58,13 @@ Data points: Grey = Observe substrate, Red = observed product, orange = observed
 
 Initially, I attempted to recreate the model plot using the parameters documented in the paper. However, the plot, as depicted in Figure 2, exhibits a slight deviation from what was presented in the paper.
 
-![Alt text](image-2.png)
+![Alt text](<Model plot replication.png>)
 
 *Figure 2.0: The paper Model replication*
 
 However, my analysis centers on the consumption of the substrate (potato) due to its direct correlation with the formation of the target product. I extracted the data points from the author's plot and attempted to align them by employing the reported parameters, as illustrated in Figure 3.
 
-![Alt text](image-3.png)
+![Alt text](<Data points fitting.png>)
 
 *Figure 3: Data points fitting using the reported parameters*
 
@@ -76,18 +76,19 @@ Upon recognizing the disparity between the model and the data points in the pape
 
 Cxm_opt = 4.8169,  kp2_opt = 0.0062, mu_opt = 1.1744, Y_Sp1_opt = 1.2764, Y_Sp2_opt = 0.4593, Y_SBP_opt = 0.0091, Y_SX_opt = -0.2271, alpha_opt = 0.1368, Beta_opt = 0.0722
 
-![Alt text](image-4.png)
+![Alt text](<Optimized model fit.png>)
+
 
 *Figure 4: My optimized model fit*
 
 ### Bifurcation analysis
 
-To explore qualitative changes in the system's behavior with variations in parameters, I conducted a bifurcation analysis. In the model, key parameters considered for bifurcation analysis include the maximum biomass concentration, which could be crucial, especially if it influences succinic acid selectivity. Additionally, the specific growth rate is a pivotal parameter in microbial growth models, and its variation can lead to different dynamics and potentially reveal bifurcations—qualitative changes in the system's behavior.
+To explore qualitative changes in the system's behavior with variations in parameters, I conducted a bifurcation analysis. In the model, key parameters considered for bifurcation analysis include the maximum biomass concentration, which could be crucial, especially if it influences succinic acid selectivity. Additionally, the specific growth rate, which is a pivotal parameter in microbial growth models, and its variation can lead to different dynamics and potentially reveal bifurcations—qualitative changes in the system's behavior.
 
 Figure 5 illustrates the system's behavior with respect to the two parameters. For the specific growth rate (μ), a continuous straight-line plot is observed, suggesting no significant changes (bifurcation) over the considered range of μ values. Hence, the μ values might not be sufficient to capture any bifurcation behavior. On the other hand, a noticeable variation is observed for the maximum biomass concentration ($C_{xm}$) between its lower and higher range values. Therefore, $C_{xm}$ might potentially influence the system's behavior.
 
+![Alt text](<Bifurcation on mu.png>)  ![Alt text](<Bifurcation on Cxm.png>)
 
-![Alt text](image-12.png)![Alt text](image-13.png) 
 
 
 *Figure 5: Bifurcation analysis*
@@ -97,17 +98,16 @@ Figure 5 illustrates the system's behavior with respect to the two parameters. F
 
 To assess the model's sensitivity to individual parameters, I conducted a local sensitivity analysis by perturbing each parameter's value by 1%. However, at this 1% perturbation level, no distinct changes were observed in the concentration profile. Consequently, I increased the perturbation levels to 5%, 10%, and 20%. It became evident in Figure 6 that, at a 20% perturbation, the concentration profile exhibited greater sensitivity to changes in the maximum biomass concentration ($C_{xm}$).
 
-![Alt text](image-5.png)  ![Alt text](image-6.png)
+![Alt text](<Sensitivity 1.png>)  ![Alt text](<Sensitivity 5.png>)
+![Alt text](<Sensitivity 10.png>)  ![Alt text](<Sensitivity 20.png>)
 
-![Alt text](image-7.png)  ![Alt text](image-9.png)
 
 *Figure 6: Sensitivity analysis at different pertubations*
 
 
 Additionally, I conducted a global sensitivity analysis with a 20% perturbation, as illustrated in Figure 7.
 
-
-![Alt text](image-10.png)
+![Alt text](<Global sensitivity.png>)
 
 *Figure 7: Global sensitivity analysis*
 
@@ -117,7 +117,7 @@ Subsequently, I employed the least squares method to estimate the normalized sen
 $$y =  -3.6057922925340735 C_{xm} - 0.9396265544639332 k_{p2} - 0.3573758933697839 \mu - 2.902837189993309 Y_{Sp1} - 0.543996949750742 Y_{Sp2} - 0.10845026725739992 Y_{SBP} + 0.046694799595708214 Y_{SX}$$
 
 
-![Alt text](image-11.png)
+![Alt text](<Normalized sensitivity.png>)
 
 *Figure 8: Estimation of the normalized sensitivities*
 
@@ -131,6 +131,10 @@ Furthermore, a bifurcation analysis was conducted to investigate the qualitative
 might significantly affect the system's behavior.
 
 A local sensitivity analysis was performed by perturbing each parameter's value, revealing that, at a 20% perturbation level, the concentration profile was more sensitive to changes in Cxm. This finding was confirmed by a global sensitivity analysis and the fitted equation, where Cxm exhibited the highest coefficient. 
+
+## Implication 
+
+The results suggest that efforts should be concentrated on accurately determining and characterizing the maximum biomass concentration (Cxm) when parameterizing the model. This practical guidance aids researchers and practitioners in focusing their experimental efforts on the most influential factors, potentially saving time and resources. This also has implications for techno-economic analyses of the bioprocess.
 
 
 
