@@ -56,23 +56,23 @@ Data points: Grey = Observe substrate, Red = observed product, orange = observed
 
 ### Model plot replication
 
-Firstly, I tried to replicate the model plot using the parameters reported in the paper. The plot as shown in figure 2 slightly deviate from what they obtained in the paper.
+Initially, I attempted to recreate the model plot using the parameters documented in the paper. However, the plot, as depicted in Figure 2, exhibits a slight deviation from what was presented in the paper.
 
 ![Alt text](image-2.png)
 
 *Figure 2.0: The paper Model replication*
 
-However, my analysis focuses on the substrate (potato) consumption since it has direct relationship with formation of the target product. I extracted the data point in the plot presented by the author, and tried to fit it using the reported parameters as shown in figure 3.
+However, my analysis centers on the consumption of the substrate (potato) due to its direct correlation with the formation of the target product. I extracted the data points from the author's plot and attempted to align them by employing the reported parameters, as illustrated in Figure 3.
 
 ![Alt text](image-3.png)
 
 *Figure 3: Data points fitting using the reported parameters*
 
-It can be seen from the plot, that the model does not fit the data very well. This motivates me to carry out optimization of the parameters to obtain a better fit of the data.
+As evident from the plot, the model does not align well with the data. This prompted me to undertake parameter optimization in order to achieve a more accurate fit for the data.
 
 ### Parameters optimization to obtain a better fit
 
-After realizing the deviation of the model and the data points in the paper, I decided to perform optimization of the parameters and fit it again using curve_fit in the scipy.optimize library. I obtained a better fit as seen in figure 4, with the following optimized parameters:
+Upon recognizing the disparity between the model and the data points in the paper, I opted to conduct parameter optimization and subsequently refit it using the curve_fit function in the scipy.optimize library. The result is a more accurate fit, as depicted in Figure 4, and the obtained optimized parameters are as follows:
 
 Cxm_opt = 4.8169,  kp2_opt = 0.0062, mu_opt = 1.1744, Y_Sp1_opt = 1.2764, Y_Sp2_opt = 0.4593, Y_SBP_opt = 0.0091, Y_SX_opt = -0.2271, alpha_opt = 0.1368, Beta_opt = 0.0722
 
@@ -80,33 +80,62 @@ Cxm_opt = 4.8169,  kp2_opt = 0.0062, mu_opt = 1.1744, Y_Sp1_opt = 1.2764, Y_Sp2_
 
 *Figure 4: My optimized model fit*
 
+### Bifurcation analysis
+
+To explore qualitative changes in the system's behavior with variations in parameters, I conducted a bifurcation analysis. In the model, key parameters considered for bifurcation analysis include the maximum biomass concentration, which could be crucial, especially if it influences succinic acid selectivity. Additionally, the specific growth rate is a pivotal parameter in microbial growth models, and its variation can lead to different dynamics and potentially reveal bifurcations—qualitative changes in the system's behavior.
+
+Figure 5 illustrates the system's behavior with respect to the two parameters. For the specific growth rate (μ), a continuous straight-line plot is observed, suggesting no significant changes (bifurcation) over the considered range of μ values. Hence, the μ values might not be sufficient to capture any bifurcation behavior. On the other hand, a noticeable variation is observed for the maximum biomass concentration ($C_{xm}$) between its lower and higher range values. Therefore, $C_{xm}$ might potentially influence the system's behavior.
+
+
+![Alt text](image-12.png)![Alt text](image-13.png) 
+
+
+*Figure 5: Bifurcation analysis*
+
+
 ### Sensitivity Analysis 
 
-To test the model's sensitivity to each of the parameters, I performed a local sensitivity analysis by pertubation of the parameters value by 1%. At 1% pertubation I could not observe a distinct behaviour of the concentration profile, therefore I further increased the pertubation to 5%, 10% and 20%. At 20% we could see clearly that the concentration profile is more sensitive to the maximum biomass concentration (Cxm).
+To assess the model's sensitivity to individual parameters, I conducted a local sensitivity analysis by perturbing each parameter's value by 1%. However, at this 1% perturbation level, no distinct changes were observed in the concentration profile. Consequently, I increased the perturbation levels to 5%, 10%, and 20%. It became evident in Figure 6 that, at a 20% perturbation, the concentration profile exhibited greater sensitivity to changes in the maximum biomass concentration ($C_{xm}$).
 
 ![Alt text](image-5.png)  ![Alt text](image-6.png)
 
 ![Alt text](image-7.png)  ![Alt text](image-9.png)
 
-*Figure 5: Sensitivity analysis at different pertubations*
+*Figure 6: Sensitivity analysis at different pertubations*
 
 
-Further, I carried out the global sensitivity analysis by 20% pertubation as shown in figure 6.
+Additionally, I conducted a global sensitivity analysis with a 20% perturbation, as illustrated in Figure 7.
 
 
 ![Alt text](image-10.png)
 
-*Figure 6: Global sensitivity analysis*
+*Figure 7: Global sensitivity analysis*
 
 
-I then used least squares to estimate the normslized sensitivities, which gave me the following fitted equation:
+Subsequently, I employed the least squares method to estimate the normalized sensitivities, resulting in the following fitted equation:
 
-y =  -3.6057922925340735 Cxm_opt +  -0.9396265544639332 kp2_opt + -0.3573758933697839 mu_opt -2.902837189993309 Y_Sp1_opt -0.543996949750742 Y_Sp2_opt - 0.10845026725739992 Y_SBP_opt + 0.046694799595708214 Y_SX_opt
+$$y =  -3.6057922925340735 C_{xm} - 0.9396265544639332 k_{p2} - 0.3573758933697839 \mu - 2.902837189993309 Y_{Sp1} - 0.543996949750742 Y_{Sp2} - 0.10845026725739992 Y_{SBP} + 0.046694799595708214 Y_{SX}$$
 
 
 ![Alt text](image-11.png)
 
-From the equation also, it could be seen that, the Cxm has the greatest coefficient, which confirm the result of our sensitivity analysis plot. Therefore most effort should focus on Cxm in terms of parameterizing the model.
+*Figure 8: Estimation of the normalized sensitivities*
+
+Examining the equation, it is evident that $C_{xm}$ has the highest coefficient, affirming the outcome of our sensitivity analysis plot. Hence, it emphasizes the importance of prioritizing efforts on parameterizing the model with a primary focus on $C_{xm}$
+
+## Conclusion
+
+In summary, the analysis undertaken in this study involved the replication and optimization of a kinetic model for the anaerobic production of succinic acid by Actinobacillus succinogenes using potato waste and glucose as substrates. The initial attempt to replicate the model revealed a deviation from the results reported in the paper, prompting a parameter optimization process. The optimized model demonstrated a better fit to the data, as depicted in Figure 4.
+
+Furthermore, a bifurcation analysis was conducted to investigate the qualitative changes in the system's behavior concerning variations in specific growth rate (μ) and maximum biomass concentration (Cxm). The results indicated that Cxm
+might significantly affect the system's behavior.
+
+A local sensitivity analysis was performed by perturbing each parameter's value, revealing that, at a 20% perturbation level, the concentration profile was more sensitive to changes in Cxm. This finding was confirmed by a global sensitivity analysis and the fitted equation, where Cxm exhibited the highest coefficient. 
+
+
+
+
+
 
 
 
