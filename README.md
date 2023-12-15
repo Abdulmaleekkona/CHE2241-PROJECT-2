@@ -105,12 +105,16 @@ To assess the model's sensitivity to individual parameters, I conducted a local 
 *Figure 6: Sensitivity analysis at different pertubations*
 
 
-Additionally, I conducted a global sensitivity analysis with a 20% perturbation, as illustrated in Figure 7.
+Additionally, I conducted a global sensitivity analysis with a 20% perturbation, as illustrated in Figure 7, and shows its distribution in figure 8.
 
 ![Alt text](<Global sensitivity.png>)
 
 *Figure 7: Global sensitivity analysis*
 
+
+![Alt text](image-1.png)
+
+*Figure 8: Parameter's value distribution*
 
 Subsequently, I employed the least squares method to estimate the normalized sensitivities, resulting in the following fitted equation:
 
@@ -119,7 +123,7 @@ $$y =  -3.6057922925340735 C_{xm} - 0.9396265544639332 k_{p2} - 0.35737589336978
 
 ![Alt text](<Normalized sensitivity.png>)
 
-*Figure 8: Estimation of the normalized sensitivities*
+*Figure 9: Estimation of the normalized sensitivities*
 
 Examining the equation, it is evident that $C_{xm}$ has the highest coefficient, affirming the outcome of our sensitivity analysis plot. Hence, it emphasizes the importance of prioritizing efforts on parameterizing the model with a primary focus on $C_{xm}$
 
